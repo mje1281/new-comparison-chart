@@ -286,7 +286,7 @@ var ComplexBarChart = React.createClass({
 
     return(
       React.createElement('div', {ref: 'plotlyWrapper', className:'complex-bar-chart'},
-        React.createElement(PlotlyComponent, Object.assign({}, {}, {data: this.convertDataToPlotlyFormat(this.props.data), key:layout.annotations.length, layout:layout, config: config}))
+        React.createElement(PlotlyComponent, {data: this.convertDataToPlotlyFormat(this.props.data), key:layout.annotations.length, layout:layout, config: config})
       )
     );
   }
