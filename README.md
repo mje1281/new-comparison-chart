@@ -45,3 +45,7 @@ Create a dropdown to switch which grouping to display in the `ComplexBarChart` (
 ## Task 3 (optional)
 
 Add `goals` as an additional option for the grouping dropdown. Calculate the average for a goal across all teachers rather than a specific group of teachers. You can differentiate ratings by goal in each teacher's rating object.
+
+## Task 4 (optional)
+
+Change `goals` grouping to only show parent goals (indicated by a `level` of 0 and `parent` set to null). Change the calculation of the average for a goal to include its child goals (identifiable by the `parent` field of the child goal) by averaging the rating for the parent goal and its child goals.
