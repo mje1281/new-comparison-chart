@@ -3,7 +3,7 @@ In this repo, you'll find a simple static HTML page that includes a React compon
 
 The goal of this task is to have you build what we've been calling a `data context` which transforms API data into the API of the component which will render the data for our users. The data context you build should transform the data in `sampleData` and pipe that into the `data` prop for the React component `<ComplexBarChart />`.
 
-The structure of the `sampleData` is as follows: 
+The structure of the `sampleData` is as follows (think of it as several responses from an API, hence the normalization): 
 ```
 goals: [ <goal> ]
 groupings: {
