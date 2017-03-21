@@ -44,6 +44,60 @@
       console.log(sampleData);
 
       // 2. An example of the data structure built for the chart component's API.
+      var subjects = Object.keys(sampleData.groupings.subjects);
+      
+      var subject = [];
+      for(var i in sampleData.groupings.subjects){
+        var subjectTeacherRatingAverage = [];
+        for(var j in sampleData.groupings.subjects[i]){
+          var teacherId = sampleData.groupings.subjects[i][j];
+          var start = 0;
+          var count = 0;
+          for(var k in sampleData.ratings[teacherId]){
+            count++;
+            start = start + sampleData.ratings[teacherId][k];
+          }
+          var average = start / count;
+          subjectTeacherRatingAverage.push(average);
+        } 
+        var subjectAndTeacherScore = {
+          subjectTitle: i,
+          avgTeacherScores: subjectTeacherRatingAverage
+        } 
+        subject.push(subjectAndTeacherScore)
+      }
+      
+      var newAvg = [];
+      for (var m = 0; m < subject.length -1; m++){  
+        var newStart = 0; 
+        var newCount =0;  
+        for(var n =0; n < subject[m].avgTeacherScores.length - 1; n++){
+          newCount++;
+          newStart = newStart + subject[m].avgTeacherScores[n];
+        }
+        var average = newStart / newCount;
+        var subjectWithAverages = {
+          subjectTitle : subject[m].subjectTitle,
+          subjectTeacherAverage : average
+        }
+        newAvg.push(subjectWithAverages);
+      }
+      
+      var subjects = newAvg.map(function(subj){
+        return subj.subjectTitle;
+      });
+      var averages = newAvg.map(function(subj){
+        return subj.subjectTeacherAverage;
+      });
+      
+      var data = [
+        {
+          x: subjects,
+          y: averages
+        }
+      ]
+      
+      
       var chartApiExample = [
           {
             x: ['English', 'History', 'Math', 'Science'],
@@ -52,7 +106,7 @@
         ];
 
         ReactDOM.render(
-          <ComplexBarChart data={chartApiExample} targetValue={3.5} maxScaleValue={5}/>,
+          <ComplexBarChart data={data} targetValue={3.5} maxScaleValue={5}/>,
           document.getElementById('barChartMount')
         );
     </script>
